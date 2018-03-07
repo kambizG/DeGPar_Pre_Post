@@ -55,7 +55,7 @@ def prune(vecs:(String, Array[String])): String = {
 
 //-------------------------------------------------------------------
 val dir = "target_dir/"
-val vecString = sc.textFile(folder + "english-prod-2016.txt").map(x => (x.split("\t")(0), x.split("\t")(1).split(",")))
+val vecString = sc.textFile(dir + "english-prod-2016.txt").map(x => (x.split("\t")(0), x.split("\t")(1).split(",")))
 val vectors_normalize_prunned_summarized = vecString.map(x => prune(x)).filter(x => x.split("\t").length > 1)
 val file_pruned_vectors = dir + "vectors/vec_30%"
 vectors_normalize_prunned_summarized.saveAsTextFile(file_pruned_vectors)
